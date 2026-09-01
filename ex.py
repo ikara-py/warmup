@@ -162,4 +162,51 @@ def echec_attendu(sorted):
 
 
 
-print(echec_attendu(classer_par_moyenne(dictionnaire_resultats(etudiants))))
+# print(echec_attendu(classer_par_moyenne(dictionnaire_resultats(etudiants))))
+
+def regrouper_par_mention(data):
+    regroup = {}
+    for key, value in data:
+        if appreciation2(value["moyenne"]) not in regroup :
+            regroup[appreciation2(value["moyenne"])] = [key]
+        else:
+            regroup[appreciation2(value["moyenne"])].append({key })
+
+    return regroup
+
+# print(regrouper_par_mention(classer_par_moyenne(dictionnaire_resultats(etudiants))))
+
+
+
+noms = ["Karim", "Sara", "Lina", "Karim"]
+
+def detection_de_doublon(data):
+    dublicates = []
+    for i in data:
+        if data.count(i) > 1:
+            dublicates.append(i)
+    if dublicates:
+        return "Attention, il y a des doublons !"
+    else:
+        return "c bon" 
+
+# print(detection_de_doublon(noms))
+
+groupe_a = {
+"Karim": {"moyenne": 12.0, "mention": "Bien"},
+}
+groupe_b = {
+"Karim": {"moyenne": 15.0, "mention": "Bien"},
+"Sara": {"moyenne": 17.0, "mention": "Tres bien"},
+}
+
+def merge_groups(group_1, group_2):
+    merged = group_1
+    for key, value in group_2.items():
+        if key in merged:
+            merged[key] = [merged[key], value]
+        else:
+            merged[key] = value
+    return merged
+
+print(merge_groups(groupe_a, groupe_b))
