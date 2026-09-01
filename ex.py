@@ -60,15 +60,27 @@ valeurs_test = [9.9, 10.0, 11.9, 12.0, 15.9, 16.0, 20.0]
 def appreciation(grades_list):
     for i in grades_list:
         if i >= 16 and i <= 20:
-            print(f"{i} -> Tres bien")
+            print( "Tres bien")
         elif i >= 12 :
-            print(f"{i} -> bien")
+            print( "bien")
         elif i >= 10:
-            print(f"{i} -> Passable")
+            print( "Passable")
         elif i < 10:
-            print(f"{i} -> Insuffisant")
+            print( "Insuffisant")
 
-# appreciation(valeurs_test)
+
+def appreciation2(note):
+    
+    if note >= 16 and note <= 20:
+        return( "Tres bien")
+    elif note >= 12 :
+        return( "bien")
+    elif note >= 10:
+        return( "Passable")
+    elif note < 10:
+        return( "Insuffisant")
+
+# print(appreciation2(12))
 
 # print(calculer_moyenne(grades))
 
@@ -79,4 +91,75 @@ etudiants = [
 ]
 
 def moyenne_groupe(etudiants):
-    pass
+    summ = 0
+    temp = 0
+    for student in etudiants :
+        temp = sum(student["notes"])
+        summ += temp / len(student["notes"])
+
+    return round(summ / len(etudiants), 2)
+# print(moyenne_groupe(etudiants))
+
+
+notes = [14, 10, 18] # Maths, Francais, Sport
+coefficients = [3, 2, 1]
+
+def somme_recursive(notes):
+    return round(sum(notes), 2)
+
+# print(somme_recursive(notes))
+
+def calculer_moyenne_ponderee(notes, coefficients):
+    if len(notes) != len(coefficients):
+        return "err the two lists has different lengths"
+    
+    start = 0
+    notes_after_coefficients = []
+    try:
+        while start < len(notes):
+            res = notes[start] * coefficients[start]
+            notes_after_coefficients.append(res)
+            start += 1
+        return round(sum(notes_after_coefficients) / somme_recursive(coefficients), 2)
+    except ZeroDivisionError as err:
+        return f"there is err : {err}"
+
+# print(calculer_moyenne_ponderee(notes, coefficients))
+
+
+def dictionnaire_resultats(etudiants):
+    dic = {}
+    for i in etudiants:
+        moyenn = calculer_moyenne(i["notes"])
+        dic[i["nom"]] = {"moyenne":moyenn, "mention": appreciation2(moyenn)} 
+
+    return dic
+
+
+# print(dictionnaire_resultats(etudiants))
+def classer_par_moyenne(resultats):
+
+    return sorted(resultats.items(), key=lambda x: x[1]["moyenne"], reverse=True)
+
+# print(classer_par_moyenne(dictionnaire_resultats(etudiants)))
+
+
+def classement(sorted):
+    order = 1
+    for key, value in sorted:
+        print(f"{order}. {key} - {value["moyenne"]}")
+        order +=1
+
+# classement(classer_par_moyenne(dictionnaire_resultats(etudiants)))
+
+def echec_attendu(sorted):
+    failed = []
+    for key, value in sorted:
+        if appreciation2(value["moyenne"]) == "Insuffisant":
+            failed.append({key : value})
+
+    return failed
+
+
+
+print(echec_attendu(classer_par_moyenne(dictionnaire_resultats(etudiants))))
