@@ -142,7 +142,7 @@ def classer_par_moyenne(resultats):
     return sorted(resultats.items(), key=lambda x: x[1]["moyenne"], reverse=True)
 
 # print(classer_par_moyenne(dictionnaire_resultats(etudiants)))
-
+# print(dictionnaire_resultats(etudiants).items())
 
 def classement(sorted):
     order = 1
