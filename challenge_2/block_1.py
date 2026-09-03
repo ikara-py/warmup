@@ -71,7 +71,7 @@ def inversion(liste):
 # print(inversion(liste))
 
 
-# _______________________ 1.5 __________________________ SKIPPED
+# _______________________ 1.5 __________________________
 
 liste_a = [1, 4, 7]
 liste_b = [2, 3, 8, 9]
@@ -86,17 +86,17 @@ def merge(liste_a ,liste_b):
     track = len(merged)
 
     for i in range(track -1):
-        while track < len(merged):
-            temp = 0
-            if merged[track -1] > merged[track]:
-                temp = merged[i]
-                merged[i] = merged[track -1]
-                merged[track -1] = temp
-            track +=1
+
+        mini = i
+        for j in range(i + 1, track):
+            if merged[j] < merged[mini]:
+                mini = j
+
+        merged[i], merged[mini] = merged[mini], merged[i]
 
     return merged
 
-# print(merge(liste_a ,liste_b))
+print(merge(liste_a ,liste_b))
 
 
 # _______________________ 1.6 __________________________
@@ -110,4 +110,4 @@ def squares(nombres):
     sq = list(map(lambda x : x * x ,[x for x in nombres if x % 2 == 0]))
     print(sq)
 
-squares(nombres)
+# squares(nombres)
