@@ -1,0 +1,9 @@
+pommes 
+lait 
+pain 
+oeufs 
+
+
+
+
+test the count
