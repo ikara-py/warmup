@@ -50,7 +50,7 @@ identity = np.eye(4)
 # print(identity)
 
 # 1.8 Crée un tableau 3x3 de nombres aléatoires entre 0 et 1 (utilise np.random)
-# random_arr = np.random.rand(0, 1)
-
+random_arr = np.random.rand(3, 3)
 # print(random_arr)
-# print(a, b, zeros_arr, ones_arr, range_arr, lin_arr, identity, random_arr, sep="\n\n")
+
+print(a, b, zeros_arr, ones_arr, range_arr, lin_arr, identity, random_arr, sep="\n\n")
